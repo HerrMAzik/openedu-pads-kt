@@ -1,24 +1,7 @@
-3 3 1
-bab
-bba
-baa
-
-10 10 10
-babbabbaba
-bbabbabban
-baabaabaas
-babbabbaba
-bbabbabban
-baabaabaas
-babbabbaba
-bbabbabban
-baabaabaas
-babbabbaba
-
-2 1 1
-ba
-
-3 3 1
-bab
-bba
-baa
+6
++ 1
++ 10
+-
++ 2
++ 1234
+-
