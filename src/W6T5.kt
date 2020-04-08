@@ -7,29 +7,24 @@ fun main() {
             io.println("YES")
             return
         }
-        data class Node(val key: Int, var parent: Node? = null, var left: Node? = null, var right: Node? = null)
+        class Node(var key: Int? = null, var parent: Node? = null, var left: Node? = null, var right: Node? = null)
 
-        val ll = Array<Node?>(n) { null }
-        val rr = Array<Node?>(n) { null }
+        val a = Array<Node?>(n) { null }
         repeat(n) { i ->
             val k = io.nextInt()
             val l = io.nextInt()
             val r = io.nextInt()
 
-            val node = Node(k)
-            if (ll[i] != null) {
-                node.parent = ll[i]
-                ll[i]!!.left = node
-            } else if (rr[i] != null) {
-                node.parent = rr[i]
-                rr[i]!!.right = node
+            val node = a[i]?.also { it.key = k } ?: Node(k).also { a[i] = it }
+            if (l != 0) {
+                node.left = Node(parent = node)
+                a[l - 1] = node.left
             }
-
-            if (l != 0) ll[l - 1] = node
-            if (r != 0) rr[r - 1] = node
+            if (r != 0) {
+                node.right = Node(parent = node)
+                a[r - 1] = node.right
+            }
         }
-
-        val root = ll.find { i -> i != null } ?: rr.find { i -> i != null } ?: error("null")
 
         fun min(node: Node): Node {
             var e = node
@@ -39,7 +34,7 @@ fun main() {
 
         fun next(node: Node): Node? {
             if (node.right != null) return min(node.right!!)
-            var c= node
+            var c = node
             var p = c.parent
             while (p != null && c == p.right) {
                 c = p
@@ -54,12 +49,12 @@ fun main() {
             while (true) {
                 next = next(node)
                 if (next == null) return true
-                if (node.key >= next.key) return false
+                if (node.key!! >= next.key!!) return false
                 node = next
             }
         }
 
-        val res = check(root)
+        val res = check(a[0]!!)
         io.println(if (res) "YES" else "NO")
     }
 }
