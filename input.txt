@@ -1,15 +1,2 @@
-14
-put zero a
-put one b
-put two c
-put three d
-put four e
-get two
-prev two
-next two
-delete one
-delete three
-get two
-prev two
-next two
-next four
+4 0 0 0
+1 1 0 0
